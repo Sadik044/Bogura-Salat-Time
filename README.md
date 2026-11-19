@@ -2,7 +2,7 @@
 
 বগুড়া জেলার জন্য সম্পূর্ণ বাংলা ভাষায় ইসলামিক ক্যালেন্ডার ও নামাজের সময়সূচি।
 
-লাইভ সাইট: https://muse.ai/s/bgudd-aa-naamaajer-smy-suuci-xpxz6dzxezxtxooxr/-fIR67VJ1M5A1bc1B30q_8myhBnb7PEeVDXmZicM_Q8
+
 
 ## যা আছে
 
