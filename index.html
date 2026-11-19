@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>বগুড়া নামাজের সময়সূচি — পাঁচ ওয়াক্ত, ইসলামি দিবস ও রমাদান ২০২৭ কাউন্টডাউন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e6; --surface:#fffdf7; --surface2:#efe7d3; --ink:#1d2b24; --muted:#5c6b61;
+  --line:#ddd2b8; --emerald:#0b5d43; --emerald-deep:#083f2e; --gold:#a87c1f; --gold-soft:#f3e5bd;
+  --accent-ink:#ffffff; --next-bg:#0b5d43; --friday:#7a5a12; --shadow:0 10px 30px rgba(60,50,10,.10);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1712; --surface:#15241c; --surface2:#1b2f24; --ink:#e9f0e6; --muted:#a7b8ab;
+    --line:#2c4436; --emerald:#2f9e76; --emerald-deep:#0a2e21; --gold:#d9ab4a; --gold-soft:#3a3115;
+    --next-bg:#0f5138; --friday:#e3c26a; --shadow:0 10px 30px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri",system-ui,sans-serif;line-height:1.65}
+button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 56px}
+a{color:var(--emerald)}
+.hero{padding:30px 0 8px;text-align:center}
+.hero .place{font-size:15px;color:var(--muted);letter-spacing:.02em}
+.hero h1{font-size:clamp(30px,6vw,46px);line-height:1.25;margin:6px 0 4px;font-weight:700}
+.hero .sub{color:var(--muted);font-size:17px;margin:0 auto;max-width:640px}
+.arabic{font-family:"Amiri",serif}
+.clockbox{margin:22px auto 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px 18px;max-width:760px}
+.clock{font-size:clamp(38px,8vw,56px);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.dateline{color:var(--muted);font-size:16px;margin-top:2px}
+.hijri{color:var(--gold);font-weight:600;font-size:17px}
+.nextbar{margin-top:14px;background:var(--next-bg);color:#fff;border-radius:12px;padding:12px 16px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;font-size:17px}
+.nextbar b{font-size:19px}
+.nextbar .cd{font-variant-numeric:tabular-nums;font-weight:700;background:rgba(255,255,255,.14);padding:2px 12px;border-radius:999px}
+.live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#ff5a4e;margin-right:6px;vertical-align:middle;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion: reduce){.live-dot{animation:none} html{scroll-behavior:auto}}
+section{margin-top:38px}
+h2{font-size:clamp(22px,4.5vw,30px);margin:0 0 6px;line-height:1.35}
+.sec-sub{color:var(--muted);margin:0 0 16px}
+.today-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.today-grid{grid-template-columns:repeat(2,1fr)}}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center;position:relative}
+.pcard .pname{font-size:17px;font-weight:600}
+.pcard .ptime{font-size:30px;font-weight:700;line-height:1.25;font-variant-numeric:tabular-nums}
+.pcard .pper{color:var(--muted);font-size:14px}
+.pcard.now{border-color:var(--emerald);box-shadow:0 0 0 2px var(--emerald) inset}
+.pcard.next{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
+.tag{position:absolute;top:8px;right:10px;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px}
+.tag.now{background:var(--emerald);color:#fff}
+.tag.next{background:var(--gold);color:#1d1d1d}
+.ramadan{background:var(--emerald-deep);color:#eaf5ee;border-radius:20px;padding:28px 20px;text-align:center;box-shadow:var(--shadow)}
+.ramadan h2{color:#fff}
+.ramadan .rsub{color:#cfe6d8;margin:0 auto 18px;max-width:600px}
+.rcount{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.rcell{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;min-width:84px;padding:12px 8px}
+.rcell .n{font-size:36px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.rcell .l{font-size:14px;color:#cfe6d8}
+.rmeta{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.rchip{background:rgba(255,255,255,.10);border-radius:999px;padding:6px 16px;font-size:15px}
+.rnote{margin-top:14px;font-size:14px;color:#b9d4c4}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 20px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;min-height:44px}
+.tab[aria-selected="true"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.tablecard{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:9px 6px;text-align:center;font-size:15.5px;border-bottom:1px solid var(--line)}
+th{background:var(--surface2);font-weight:700;position:sticky;top:0}
+td.date,th.date{text-align:left;padding-left:14px;font-weight:600;white-space:nowrap}
+tr.friday td{color:var(--friday);font-weight:600}
+tr.today-row{background:var(--gold-soft)}
+tr.today-row td{font-weight:700}
+.today-badge{font-size:11.5px;background:var(--gold);color:#201a05;border-radius:999px;padding:0 8px;margin-left:6px;font-weight:700;vertical-align:middle}
+@media(max-width:640px){ .hide-m{display:none} th,td{font-size:14px;padding:8px 3px} td.date{padding-left:8px} }
+.events{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.events{grid-template-columns:1fr}}
+.ev{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+.ev .dbox{background:var(--surface2);border-radius:12px;text-align:center;min-width:70px;padding:8px 4px;flex-shrink:0}
+.ev .dbox .dd{font-size:24px;font-weight:700;line-height:1.15}
+.ev .dbox .dm{font-size:13px;color:var(--muted)}
+.ev h3{margin:0;font-size:18px;line-height:1.4}
+.ev .hij{color:var(--gold);font-weight:600;font-size:14.5px}
+.ev p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.ev .days{margin-top:8px;display:inline-block;font-size:13.5px;font-weight:700;background:var(--gold-soft);color:var(--ink);border-radius:999px;padding:2px 12px}
+.ev.past{opacity:.55}
+.ev.soon{border-color:var(--gold);box-shadow:0 0 0 1.5px var(--gold) inset}
+.notes{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.notes ul{margin:8px 0;padding-left:20px}
+.notes li{margin:6px 0}
+:root[data-theme="dark"]{
+  --bg:#0d1712; --surface:#15241c; --surface2:#1b2f24; --ink:#e9f0e6; --muted:#a7b8ab;
+  --line:#2c4436; --emerald:#2f9e76; --emerald-deep:#0a2e21; --gold:#d9ab4a; --gold-soft:#3a3115;
+  --next-bg:#0f5138; --friday:#e3c26a; --shadow:0 10px 30px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+:root[data-theme="light"]{
+  --bg:#f6f1e6; --surface:#fffdf7; --surface2:#efe7d3; --ink:#1d2b24; --muted:#5c6b61;
+  --line:#ddd2b8; --emerald:#0b5d43; --emerald-deep:#083f2e; --gold:#a87c1f; --gold-soft:#f3e5bd;
+  --next-bg:#0b5d43; --friday:#7a5a12; --shadow:0 10px 30px rgba(60,50,10,.10);
+  color-scheme:light;
+}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%230b5d43' stroke-width='1.4'%3E%3Cpath d='M36 6 L44 28 L66 36 L44 44 L36 66 L28 44 L6 36 L28 28 Z'/%3E%3Ccircle cx='36' cy='36' r='7'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:72px 72px}
+.toolbar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.tbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 18px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;min-height:40px}
+.tbtn[aria-pressed="true"]{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.bdate{color:var(--emerald);font-weight:600;font-size:16px;margin-top:2px}
+.pcard.past{opacity:.48}
+.pcard.past .ptime{font-weight:600}
+.extra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+@media(max-width:640px){.extra-grid{grid-template-columns:repeat(2,1fr)}}
+.xcard{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:12px 14px;text-align:center}
+.xcard .xname{font-size:15px;font-weight:600;color:var(--muted)}
+.xcard .xtime{font-size:23px;font-weight:700;line-height:1.3;font-variant-numeric:tabular-nums}
+.xcard .xper{color:var(--muted);font-size:13px}
+.forbid{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:15.5px}
+.forbid b{color:var(--gold)}
+.dua{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+.dua .ar{font-family:"Amiri",serif;font-size:25px;line-height:1.9;text-align:center;color:var(--emerald)}
+.dua .bnmean{margin-top:8px}
+.dua .src{color:var(--muted);font-size:14px;margin-top:6px}
+.monthnav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.monthnav .sp{flex:1}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table-scroll table{min-width:620px}
+.table-scroll td.date,.table-scroll th.date{position:sticky;left:0;background:var(--surface);z-index:2;box-shadow:2px 0 0 var(--line)}
+.table-scroll tr.today-row td.date{background:var(--gold-soft)}
+.table-scroll tr.friday td.date{background:var(--surface)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;color:var(--ink);font-family:inherit;font-size:15px;font-weight:600;padding:8px 16px;cursor:pointer;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--emerald);color:#fff}
+.ctl-row{display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.ctl-row .lbl{font-weight:600;font-size:15.5px}
+.calcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.cal-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.cal-head .ct{flex:1;text-align:center;font-weight:700;font-size:18px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{text-align:center;font-size:13.5px;color:var(--muted);font-weight:700;padding:4px 0}
+.cal-cell{border:1px solid var(--line);border-radius:10px;min-height:64px;padding:5px 6px;background:var(--surface);color:var(--ink);font-family:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.cal-cell .cd{font-weight:700;font-size:16px;line-height:1.2}
+.cal-cell .ch{font-size:11.5px;color:var(--gold);font-weight:600;line-height:1.2}
+.cal-cell.empty{border:0;background:transparent;cursor:default}
+.cal-cell.fri{background:var(--surface2)}
+.cal-cell.today{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
+.cal-cell.sel{border-color:var(--emerald);box-shadow:0 0 0 2px var(--emerald) inset}
+.cal-dots{display:flex;gap:3px;flex-wrap:wrap;margin-top:auto}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.major{background:#c0392b}.dot.beez{background:var(--emerald)}.dot.fast{background:#2e6fb0}.dot.jumuah{background:var(--gold)}.dot.start{background:#7d3c98}
+@media(max-width:640px){.cal-cell{min-height:54px;padding:4px}.cal-cell .ch{display:none}}
+.legend{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);margin-top:10px}
+.legend .dot{vertical-align:middle;margin-right:4px}
+.cal-detail{margin-top:12px;background:var(--surface2);border-radius:12px;padding:14px 18px;font-size:15.5px}
+.cal-detail h3{margin:0 0 4px;font-size:17px}
+.cal-detail p{margin:2px 0;color:var(--muted)}
+footer{margin-top:40px;text-align:center;color:var(--muted);font-size:14.5px}
+@media print{
+  body::before{display:none}
+  .toolbar,.tabs,.monthnav,.quicknav,.ctl-row,.no-print{display:none !important}
+  body{background:#fff;color:#000}
+  .wrap{max-width:none;padding:0}
+  section{margin-top:18px;page-break-inside:avoid}
+  .tablecard,.calcard,.notes{box-shadow:none;border-color:#999}
+  .table-scroll{overflow:visible}
+  .table-scroll table{min-width:0}
+  th,td{font-size:12.5px;padding:5px 4px}
+  .ramadan{background:#fff;color:#000;border:1px solid #999}
+  .ramadan h2,.ramadan .rsub,.ramadan .rsub b{color:#000 !important}
+  .rcell .l,.rnote{color:#333}
+}
+.quicknav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.quicknav a{background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;border-radius:999px;padding:8px 18px;font-weight:600;font-size:15px;display:inline-flex;align-items:center;min-height:40px}
+.share-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.share-btn{display:inline-flex;align-items:center;gap:7px}
+.share-btn svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+.share-btn.wa{background:#1faa55;border-color:#1faa55;color:#fff}
+.share-btn.fb{background:#1877f2;border-color:#1877f2;color:#fff}
+.share-msg{text-align:center;color:var(--muted);font-size:14.5px;margin:8px auto 0;min-height:1.3em;max-width:640px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="place">📍 বগুড়া জেলা, রাজশাহী বিভাগ, বাংলাদেশ</div>
+    <h1>বগুড়া নামাজের সময়সূচি</h1>
+    <p class="sub">পাঁচ ওয়াক্ত নামাজের ওয়াক্ত, সূর্যোদয়, সব ইসলামি দিবস এবং রমাদান ২০২৭-এর কাউন্টডাউন — এক জায়গায়।</p>
+    <nav class="quicknav">
+      <a href="#today">আজকের নামাজ</a>
+      <a href="#ramadan">রমাদান ২০২৭</a>
+      <a href="#ramadan-table">সেহরি-ইফতার টেবিল</a>
+      <a href="#monthly">মাসিক সময়সূচি</a>
+      <a href="#events">ইসলামি দিবস</a>
+    </nav>
+    <div class="clockbox">
+      <div><span class="live-dot"></span><span id="liveLabel">লাইভ সময় — বগুড়া (বাংলাদেশ সময়)</span></div>
+      <div class="clock" id="clock">--:--:--</div>
+      <div class="dateline" id="gdate">—</div>
+      <div class="bdate" id="bdate">—</div>
+      <div class="hijri" id="hdate">—</div>
+      <div class="nextbar" id="nextbar"><span>পরবর্তী ওয়াক্ত লোড হচ্ছে…</span></div>
+    </div>
+    <div class="toolbar no-print">
+      <button class="tbtn" id="themeBtn" type="button">🌙 ডার্ক মোড</button>
+      <button class="tbtn" id="notifyBtn" type="button" aria-pressed="false">🔔 ওয়াক্তের নোটিফিকেশন চালু করুন</button>
+    </div>
+    <p class="sec-sub no-print" style="text-align:center;max-width:640px;margin:10px auto 0">নোট: নোটিফিকেশন শুধুমাত্র এই পেজ/ট্যাব খোলা থাকলেই কাজ করবে। ফোনে ব্রাউজার বন্ধ করে দিলে বা ট্যাব বন্ধ থাকলে ওয়াক্তের নোটিফিকেশন আসবে না।</p>
+    <div class="share-row no-print" role="group" aria-label="শেয়ার করুন">
+      <button class="tbtn share-btn wa" id="shareWa" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>WhatsApp-এ শেয়ার করুন</button>
+      <button class="tbtn share-btn fb" id="shareFb" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21.9v-7.2h2.42l.36-2.8H13.5V10.1c0-.81.23-1.36 1.4-1.36h1.5V6.24c-.26-.03-1.15-.11-2.18-.11-2.16 0-3.64 1.32-3.64 3.74v2.03H8.13v2.8h2.45v7.2a10 10 0 0 0 2.92 0z"/></svg>Facebook-এ শেয়ার করুন</button>
+      <button class="tbtn share-btn" id="copyLinkBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>লিংক কপি করুন</button>
+    </div>
+    <p class="share-msg no-print" id="shareMsg" aria-live="polite"></p>
+  </header>
+
+  <section id="today">
+    <h2>আজকের পাঁচ ওয়াক্ত নামাজ</h2>
+    <p class="sec-sub" id="todaySub">ওয়াক্ত শুরু হওয়ার সময় (বগুড়া)। জামাতের সময় মসজিদভেদে আলাদা হতে পারে।</p>
+    <div class="today-grid" id="todayGrid"></div>
+    <div class="extra-grid" id="extraGrid"></div>
+    <div class="forbid" id="forbidBox"></div>
+  </section>
+
+  <section id="dua">
+    <h2>আজকের দোয়া</h2>
+    <p class="sec-sub">সুপরিচিত ও যাচাইকৃত দোয়া থেকে প্রতিদিন একটি — আরবি, অর্থ ও উৎসসহ।</p>
+    <div class="dua" id="duaBox"></div>
+  </section>
+
+  <section id="ramadan">
+    <div class="ramadan">
+      <div class="arabic" style="font-size:26px;color:#e9cf8f">شَهْرُ رَمَضَانَ</div>
+      <h2>রমাদান ২০২৭ আসতে বাকি</h2>
+      <p class="rsub">পবিত্র রমাদান ১৪৪৮ হিজরি — বাংলাদেশে প্রথম রোজা সম্ভবত <b style="color:#fff">মঙ্গলবার, ৯ ফেব্রুয়ারি ২০২৭</b>। সৌদি আরব ও উম্মুল কুরা হিসাবে প্রথম রোজা <b style="color:#fff">সোমবার, ৮ ফেব্রুয়ারি ২০২৭</b> হতে পারে; বাংলাদেশে চাঁদ সাধারণত একদিন পরে দেখা যায়, তাই এখানে ৯ ফেব্রুয়ারিই বেশি সম্ভাব্য। এই পেজের ডিফল্ট হিসাব "বাংলাদেশ", তাই নিচের কাউন্টডাউন ৯ ফেব্রুয়ারি ধরে গণনা করা হয়েছে — নিচের দিবস অংশে হিসাব বদলে "সৌদি হিসাব" করলে কাউন্টডাউনের লক্ষ্যও ৮ ফেব্রুয়ারি হয়ে যাবে, যাতে কাউন্টডাউন আর দিবসের কার্ড সবসময় একই তারিখ দেখায়। বাংলাদেশ হিসাবে প্রথম তারাবি ৮ ফেব্রুয়ারি রাতে, প্রথম সেহরি ৯ ফেব্রুয়ারি ভোরে।</p>
+      <div class="rcount">
+        <div class="rcell"><div class="n" id="rDays">–</div><div class="l">দিন</div></div>
+        <div class="rcell"><div class="n" id="rHours">–</div><div class="l">ঘণ্টা</div></div>
+        <div class="rcell"><div class="n" id="rMins">–</div><div class="l">মিনিট</div></div>
+        <div class="rcell"><div class="n" id="rSecs">–</div><div class="l">সেকেন্ড</div></div>
+      </div>
+      <div class="rmeta">
+        <span class="rchip" id="ramadanTargetChip">কাউন্টডাউন লক্ষ্য (বাংলাদেশ হিসাব): মঙ্গলবার, ৯ ফেব্রুয়ারি ২০২৭</span>
+        <span class="rchip">বাংলাদেশে সম্ভাব্য প্রথম রোজা: মঙ্গলবার, ৯ ফেব্রুয়ারি ২০২৭</span>
+        <span class="rchip">সৌদি হিসাবে প্রথম রোজা: সোমবার, ৮ ফেব্রুয়ারি ২০২৭</span>
+        <span class="rchip" id="ramadanSehriChip">সেহরি শেষ (বগুড়া, প্রথম রোজা): ভোর ৫:২৪</span>
+        <span class="rchip" id="ramadanIftarChip">ইফতার (বগুড়া, প্রথম রোজা): সন্ধ্যা ৫:৫২</span>
+        <span class="rchip">ঈদুল ফিতর: সৌদি হিসাবে ৯ মার্চ, বাংলাদেশে সম্ভবত ১০ মার্চ ২০২৭</span>
+      </div>
+      <div id="ramadanDone" style="display:none;font-size:26px;font-weight:700;color:#e9cf8f;margin-top:16px">🌙 রমাদান মোবারক! পবিত্র রমাদান শুরু হয়েছে।</div>
+      <p class="rnote">* সব তারিখ চাঁদ দেখার উপর নির্ভরশীল। বাংলাদেশে জাতীয় চাঁদ দেখা কমিটির ঘোষণা অনুযায়ী তারিখ একদিন এদিক-সেদিক হতে পারে। সেহরি ও ইফতারের সময় প্রথম রোজার দিনের জন্য বগুড়ার হিসাব অনুযায়ী।</p>
+    </div>
+  </section>
+
+  <section id="ramadan-table">
+    <h2>রমাদান ২০২৭ — ৩০ দিনের সেহরি ও ইফতার (বগুড়া)</h2>
+    <p class="sec-sub" id="ramadanTableSub">রমাদানের প্রতিদিনের সেহরির শেষ সময় ও ইফতারের সময়, বগুড়ার হিসাবে।</p>
+    <div class="tablecard">
+      <div class="table-scroll">
+      <table>
+        <thead><tr>
+          <th>রোজা</th><th class="date">তারিখ</th><th>বার</th><th>সেহরির শেষ সময়</th><th>ইফতার</th>
+        </tr></thead>
+        <tbody id="ramadanBody"></tbody>
+      </table>
+      </div>
+    </div>
+    <p class="sec-sub" style="margin-top:10px">নোট: সেহরির শেষ সময় হলো ফজরের ওয়াক্ত শুরুর সময়, আর ইফতারের সময় হলো মাগরিবের ওয়াক্ত শুরুর সময়। সব তারিখ চাঁদ দেখা সাপেক্ষে — রমাদান ২৯ দিনে শেষ হলে শেষ সারির দিনটিই ঈদুল ফিতর হবে। মোবাইলে টেবিলটি পাশে স্ক্রল করা যাবে।</p>
+  </section>
+
+  <section id="monthly">
+    <h2 id="monthlyTitle">মাসিক সময়সূচি</h2>
+    <p class="sec-sub">বগুড়া জেলার জন্য প্রতিদিনের ফজর, সূর্যোদয়, যোহর (শুক্রবারে জুমা), আসর, মাগরিব ও এশার ওয়াক্ত। "আগের মাস / পরের মাস" বাটনে নভেম্বর ২০২৬ থেকে ডিসেম্বর ২০২৭ পর্যন্ত যেকোনো মাস দেখা যাবে — সময়গুলো আজকের কার্ডের সঙ্গে একই উৎস থেকে আসে, তাই আজকের সারি কার্ডের সময়ের সঙ্গে হুবহু মিলবে। শুক্রবারের সারি আলাদা রঙে, আজকের সারি হাইলাইট করা।</p>
+    <div class="monthnav no-print">
+      <button class="tbtn" id="prevMonth" type="button">← আগের মাস</button>
+      <button class="tbtn" id="todayMonth" type="button">আজ</button>
+      <span class="sp"></span>
+      <button class="tbtn" id="nextMonth" type="button">পরের মাস →</button>
+    </div>
+    <div class="tablecard">
+      <div class="table-scroll">
+      <table>
+        <thead><tr>
+          <th class="date">তারিখ</th><th>বার</th><th class="hide-m">হিজরি</th><th>ফজর</th><th class="hide-m">সূর্যোদয়</th><th>যোহর</th><th>আসর</th><th>মাগরিব</th><th>এশা</th>
+        </tr></thead>
+        <tbody id="monthBody"></tbody>
+      </table>
+      </div>
+    </div>
+    <p class="sec-sub" style="margin-top:10px">মোবাইলে টেবিলটি পাশে স্ক্রল করা যাবে — তারিখের কলামটি আটকে থাকবে। এই সময়সূচি প্রিন্ট করার জন্য ব্রাউজারের প্রিন্ট অপশন ব্যবহার করুন; প্রিন্টে শুধু সময়সূচি পরিষ্কারভাবে আসবে।</p>
+  </section>
+
+  <section id="events">
+    <h2>ইসলামি দিবস ও ঘটনা — নভেম্বর ২০২৬ থেকে রমাদান ২০২৭</h2>
+    <p class="sec-sub">হিজরি মাসের শুরু, আইয়ামে বীজের রোজা, সোম ও বৃহস্পতিবারের নফল রোজা, প্রতিটি জুমা এবং সব বড় দিবস। ক্যালেন্ডারের যেকোনো দিনে ক্লিক করলে বিস্তারিত দেখা যাবে।</p>
+    <div class="ctl-row no-print">
+      <span class="lbl">দেখুন:</span>
+      <span class="seg" role="group" aria-label="ভিউ বাছাই">
+        <button type="button" id="viewCal" aria-pressed="true">ক্যালেন্ডার</button>
+        <button type="button" id="viewList" aria-pressed="false">তালিকা</button>
+      </span>
+      <span class="lbl">হিজরি তারিখের হিসাব:</span>
+      <span class="seg" role="group" aria-label="হিজরি সমন্বয়">
+        <button type="button" data-adj="0" aria-pressed="false">সৌদি হিসাব</button>
+        <button type="button" data-adj="1" aria-pressed="true">বাংলাদেশ (১ দিন পরে)</button>
+      </span>
+      <button class="tbtn" id="calToday" type="button">আজ</button>
+    </div>
+    <div id="calWrap">
+      <div class="calcard">
+        <div class="cal-head no-print">
+          <button class="tbtn" id="calPrev" type="button">← আগের মাস</button>
+          <div class="ct" id="calTitle">—</div>
+          <button class="tbtn" id="calNext" type="button">পরের মাস →</button>
+        </div>
+        <div class="cal-grid" id="calDow"></div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="legend">
+          <span><span class="dot major"></span>বড় দিবস</span>
+          <span><span class="dot start"></span>হিজরি মাসের শুরু</span>
+          <span><span class="dot beez"></span>আইয়ামে বীজ (১৩–১৫)</span>
+          <span><span class="dot fast"></span>সোম/বৃহস্পতির নফল রোজা</span>
+          <span><span class="dot jumuah"></span>জুমা</span>
+        </div>
+        <div class="cal-detail" id="calDetail">যেকোনো দিনে ক্লিক করলে সেই দিনের দিবস ও ফজিলত এখানে দেখা যাবে।</div>
+      </div>
+      <p class="sec-sub" style="margin-top:10px">নোট: "সৌদি হিসাব" হলো উম্মুল কুরা ক্যালেন্ডার অনুযায়ী তারিখ। বাংলাদেশে চাঁদ সাধারণত একদিন পরে দেখা যায় — "বাংলাদেশ (১ দিন পরে)" বাছাই করলে ক্যালেন্ডারের হিজরি তারিখের পাশাপাশি ঈদ, শবে বরাতসহ সব দিবসের ইংরেজি তারিখও একদিন পিছিয়ে যাবে। চূড়ান্ত ঘোষণা জাতীয় চাঁদ দেখা কমিটির।</p>
+    </div>
+    <div id="listWrap" style="display:none">
+      <h3 style="font-size:20px;margin:6px 0 4px" id="listRangeTitle">আসন্ন দিবস ও নফল রোজার দিনসমূহ</h3>
+      <p class="sec-sub">সোম-বৃহস্পতিবারের নফল রোজা ও জুমার তালিকা দুটি আগামী ৬০ দিনের জন্য; নিচের দিবসের কার্ডগুলোতে সেই সময়ের বাইরের (ডিসেম্বর ২০২৬ পর্যন্ত ও তার পরের) দিবসও রয়েছে।</p>
+      <p class="sec-sub">সোম ও বৃহস্পতিবারের নফল রোজা: <span id="monThuList"></span></p>
+      <p class="sec-sub">জুমার দিনসমূহ: <span id="jumuahList"></span> — জুমার দিনে দরুদ পাঠ, সূরা কাহফ তিলাওয়াত ও দোয়া কবুলের বিশেষ মুহূর্ত রয়েছে।</p>
+      <div class="events" id="eventGrid"></div>
+      <h3 style="font-size:20px;margin:26px 0 4px">আসন্ন বড় দিবস — রমাদান ২০২৭ পর্যন্ত ও তার পরে</h3>
+      <div class="events" id="eventGridBig"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="notes">
+      <h2 style="font-size:21px">জরুরি তথ্য</h2>
+      <ul>
+        <li><b>হিসাবের পদ্ধতি:</b> করাচি বিশ্ববিদ্যালয় (University of Islamic Sciences, Karachi) পদ্ধতি — ফজর ও এশা ১৮°, আসর হানাফি মাযহাব অনুযায়ী (ছায়া-গুণক ২)। উদাহরণ: ১৮ নভেম্বর ২০২৬, বগুড়া — ফজর ০৫:০২, যোহর ১১:৪৮, আসর বিকাল ৩:৩৯, মাগরিব ০৫:১৪, এশা ০৬:৩৪। স্থানাঙ্ক: বগুড়া (২৪.৮৫° উত্তর, ৮৯.৩৭° পূর্ব), সময় অঞ্চল Asia/Dhaka (UTC+৬)। এটি গণনাভিত্তিক সময় — স্থানীয় মসজিদের জামাতের সময় এর থেকে ভিন্ন হতে পারে।</li>
+        <li><b>গণনা:</b> আজকের কার্ড, মাসিক টেবিল ও রমাদানের সেহরি-ইফতার টেবিল — তিনটিই একই উৎস থেকে আসে, তাই তাদের সময় সবসময় পরস্পরের সঙ্গে মেলে। নভেম্বর–ডিসেম্বর ২০২৬-এর জন্য যাচাই করা পূর্ব-গণিত সময়সূচি ব্যবহার করা হয়; বাকি সব মাসের (ডিসেম্বর ২০২৭ পর্যন্ত) সময় ব্রাউজারেই জ্যোতির্বিজ্ঞানভিত্তিক সূত্রে গণনা করা হয়। কোনো API বা ইন্টারনেট সংযোগ ছাড়াই সবকিছু কাজ করে, এবং পৃথিবীর যেকোনো জায়গা থেকে খুললেও সবসময় বগুড়ার (Asia/Dhaka) সময়ই দেখানো হয়।</li>
+        <li><b>ওয়াক্ত বনাম জামাত:</b> এখানে ওয়াক্ত <i>শুরু</i> হওয়ার সময় দেওয়া হয়েছে। প্রতিটি মসজিদের জামাতের সময় আলাদা; নিজের এলাকার মসজিদের ঘোষণা দেখে নিন।</li>
+        <li><b>শুক্রবার:</b> যোহরের ওয়াক্তেই জুমার নামাজ অনুষ্ঠিত হয়।</li>
+        <li><b>সূর্যোদয় ও নিষিদ্ধ সময়:</b> সূর্যোদয়ের সময় ফজরের ওয়াক্ত শেষ হয়। নিষিদ্ধ সময় হলো সূর্যোদয় শুরু হওয়ার পর থেকে প্রায় ১৫–২০ মিনিট পর্যন্ত — সূর্য পুরোপুরি উঠে গেলে এই সময় শেষ হয়, তারপর ইশরাক পড়া যায়।</li>
+        <li><b>চাঁদ দেখা:</b> হিজরি তারিখ ও সব ধর্মীয় দিবস চাঁদ দেখার উপর নির্ভরশীল। চূড়ান্ত তারিখের জন্য বাংলাদেশ ইসলামিক ফাউন্ডেশন ও জাতীয় চাঁদ দেখা কমিটির ঘোষণাই প্রামাণ্য।</li>
+        <li><b>তথ্যসূত্র:</b> নামাজের সময় করাচি পদ্ধতির হিসাব অনুযায়ী এবং হিজরি তারিখ উম্মুল কুরা ক্যালেন্ডার অনুযায়ী যাচাই করা (১৮ নভেম্বর ২০২৬ = ৮ জুমাদাল আখিরাহ ১৪৪৮)। এটি গণনাভিত্তিক সময় — স্থানীয় মসজিদের জামাতের সময় এর থেকে ভিন্ন হতে পারে।</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>আল্লাহ আমাদের সবার নামাজ কবুল করুন। 🤲<br>বগুড়া নামাজের সময়সূচি — নভেম্বর ২০২৬ – ডিসেম্বর ২০২৭ সংস্করণ</p>
+  </footer>
+</div>
+
+<script>
+var DATA = {"11": [{"d": 1,"wd": "Sunday","h": "21 Jumādá al-ūlá 1448","hm": 5,"hd": 21,"fajr": "04:52","sun": "06:10","dhuhr": "11:46","asr": "15:46","mag": "17:22","isha": "18:40"},{"d": 2,"wd": "Monday","h": "22 Jumādá al-ūlá 1448","hm": 5,"hd": 22,"fajr": "04:53","sun": "06:10","dhuhr": "11:46","asr": "15:46","mag": "17:22","isha": "18:39"},{"d": 3,"wd": "Tuesday","h": "23 Jumādá al-ūlá 1448","hm": 5,"hd": 23,"fajr": "04:53","sun": "06:11","dhuhr": "11:46","asr": "15:45","mag": "17:21","isha": "18:39"},{"d": 4,"wd": "Wednesday","h": "24 Jumādá al-ūlá 1448","hm": 5,"hd": 24,"fajr": "04:54","sun": "06:11","dhuhr": "11:46","asr": "15:45","mag": "17:20","isha": "18:38"},{"d": 5,"wd": "Thursday","h": "25 Jumādá al-ūlá 1448","hm": 5,"hd": 25,"fajr": "04:54","sun": "06:12","dhuhr": "11:46","asr": "15:44","mag": "17:20","isha": "18:38"},{"d": 6,"wd": "Friday","h": "26 Jumādá al-ūlá 1448","hm": 5,"hd": 26,"fajr": "04:55","sun": "06:13","dhuhr": "11:46","asr": "15:44","mag": "17:19","isha": "18:37"},{"d": 7,"wd": "Saturday","h": "27 Jumādá al-ūlá 1448","hm": 5,"hd": 27,"fajr": "04:55","sun": "06:13","dhuhr": "11:46","asr": "15:43","mag": "17:19","isha": "18:37"},{"d": 8,"wd": "Sunday","h": "28 Jumādá al-ūlá 1448","hm": 5,"hd": 28,"fajr": "04:56","sun": "06:14","dhuhr": "11:46","asr": "15:43","mag": "17:18","isha": "18:36"},{"d": 9,"wd": "Monday","h": "29 Jumādá al-ūlá 1448","hm": 5,"hd": 29,"fajr": "04:56","sun": "06:15","dhuhr": "11:46","asr": "15:42","mag": "17:18","isha": "18:36"},{"d": 10,"wd": "Tuesday","h": "30 Jumādá al-ūlá 1448","hm": 5,"hd": 30,"fajr": "04:57","sun": "06:15","dhuhr": "11:46","asr": "15:42","mag": "17:17","isha": "18:36"},{"d": 11,"wd": "Wednesday","h": "1 Jumādá al-ākhirah 1448","hm": 6,"hd": 1,"fajr": "04:57","sun": "06:16","dhuhr": "11:47","asr": "15:41","mag": "17:17","isha": "18:35"},{"d": 12,"wd": "Thursday","h": "2 Jumādá al-ākhirah 1448","hm": 6,"hd": 2,"fajr": "04:58","sun": "06:17","dhuhr": "11:47","asr": "15:41","mag": "17:16","isha": "18:35"},{"d": 13,"wd": "Friday","h": "3 Jumādá al-ākhirah 1448","hm": 6,"hd": 3,"fajr": "04:59","sun": "06:17","dhuhr": "11:47","asr": "15:40","mag": "17:16","isha": "18:35"},{"d": 14,"wd": "Saturday","h": "4 Jumādá al-ākhirah 1448","hm": 6,"hd": 4,"fajr": "04:59","sun": "06:18","dhuhr": "11:47","asr": "15:40","mag": "17:16","isha": "18:34"},{"d": 15,"wd": "Sunday","h": "5 Jumādá al-ākhirah 1448","hm": 6,"hd": 5,"fajr": "05:00","sun": "06:19","dhuhr": "11:47","asr": "15:40","mag": "17:15","isha": "18:34"},{"d": 16,"wd": "Monday","h": "6 Jumādá al-ākhirah 1448","hm": 6,"hd": 6,"fajr": "05:00","sun": "06:19","dhuhr": "11:47","asr": "15:39","mag": "17:15","isha": "18:34"},{"d": 17,"wd": "Tuesday","h": "7 Jumādá al-ākhirah 1448","hm": 6,"hd": 7,"fajr": "05:01","sun": "06:20","dhuhr": "11:47","asr": "15:39","mag": "17:15","isha": "18:34"},{"d": 18,"wd": "Wednesday","h": "8 Jumādá al-ākhirah 1448","hm": 6,"hd": 8,"fajr": "05:02","sun": "06:21","dhuhr": "11:48","asr": "15:39","mag": "17:14","isha": "18:34"},{"d": 19,"wd": "Thursday","h": "9 Jumādá al-ākhirah 1448","hm": 6,"hd": 9,"fajr": "05:02","sun": "06:21","dhuhr": "11:48","asr": "15:38","mag": "17:14","isha": "18:33"},{"d": 20,"wd": "Friday","h": "10 Jumādá al-ākhirah 1448","hm": 6,"hd": 10,"fajr": "05:03","sun": "06:22","dhuhr": "11:48","asr": "15:38","mag": "17:14","isha": "18:33"},{"d": 21,"wd": "Saturday","h": "11 Jumādá al-ākhirah 1448","hm": 6,"hd": 11,"fajr": "05:03","sun": "06:23","dhuhr": "11:48","asr": "15:38","mag": "17:14","isha": "18:33"},{"d": 22,"wd": "Sunday","h": "12 Jumādá al-ākhirah 1448","hm": 6,"hd": 12,"fajr": "05:04","sun": "06:24","dhuhr": "11:49","asr": "15:38","mag": "17:13","isha": "18:33"},{"d": 23,"wd": "Monday","h": "13 Jumādá al-ākhirah 1448","hm": 6,"hd": 13,"fajr": "05:05","sun": "06:24","dhuhr": "11:49","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 24,"wd": "Tuesday","h": "14 Jumādá al-ākhirah 1448","hm": 6,"hd": 14,"fajr": "05:05","sun": "06:25","dhuhr": "11:49","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 25,"wd": "Wednesday","h": "15 Jumādá al-ākhirah 1448","hm": 6,"hd": 15,"fajr": "05:06","sun": "06:26","dhuhr": "11:49","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 26,"wd": "Thursday","h": "16 Jumādá al-ākhirah 1448","hm": 6,"hd": 16,"fajr": "05:06","sun": "06:26","dhuhr": "11:50","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 27,"wd": "Friday","h": "17 Jumādá al-ākhirah 1448","hm": 6,"hd": 17,"fajr": "05:07","sun": "06:27","dhuhr": "11:50","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 28,"wd": "Saturday","h": "18 Jumādá al-ākhirah 1448","hm": 6,"hd": 18,"fajr": "05:08","sun": "06:28","dhuhr": "11:50","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 29,"wd": "Sunday","h": "19 Jumādá al-ākhirah 1448","hm": 6,"hd": 19,"fajr": "05:08","sun": "06:29","dhuhr": "11:51","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 30,"wd": "Monday","h": "20 Jumādá al-ākhirah 1448","hm": 6,"hd": 20,"fajr": "05:09","sun": "06:29","dhuhr": "11:51","asr": "15:37","mag": "17:13","isha": "18:33"}],"12": [{"d": 1,"wd": "Tuesday","h": "21 Jumādá al-ākhirah 1448","hm": 6,"hd": 21,"fajr": "05:09","sun": "06:30","dhuhr": "11:51","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 2,"wd": "Wednesday","h": "22 Jumādá al-ākhirah 1448","hm": 6,"hd": 22,"fajr": "05:10","sun": "06:31","dhuhr": "11:52","asr": "15:37","mag": "17:13","isha": "18:33"},{"d": 3,"wd": "Thursday","h": "23 Jumādá al-ākhirah 1448","hm": 6,"hd": 23,"fajr": "05:11","sun": "06:31","dhuhr": "11:52","asr": "15:37","mag": "17:13","isha": "18:34"},{"d": 4,"wd": "Friday","h": "24 Jumādá al-ākhirah 1448","hm": 6,"hd": 24,"fajr": "05:11","sun": "06:32","dhuhr": "11:53","asr": "15:37","mag": "17:13","isha": "18:34"},{"d": 5,"wd": "Saturday","h": "25 Jumādá al-ākhirah 1448","hm": 6,"hd": 25,"fajr": "05:12","sun": "06:33","dhuhr": "11:53","asr": "15:37","mag": "17:13","isha": "18:34"},{"d": 6,"wd": "Sunday","h": "26 Jumādá al-ākhirah 1448","hm": 6,"hd": 26,"fajr": "05:13","sun": "06:33","dhuhr": "11:53","asr": "15:37","mag": "17:13","isha": "18:34"},{"d": 7,"wd": "Monday","h": "27 Jumādá al-ākhirah 1448","hm": 6,"hd": 27,"fajr": "05:13","sun": "06:34","dhuhr": "11:54","asr": "15:37","mag": "17:13","isha": "18:34"},{"d": 8,"wd": "Tuesday","h": "28 Jumādá al-ākhirah 1448","hm": 6,"hd": 28,"fajr": "05:14","sun": "06:35","dhuhr": "11:54","asr": "15:38","mag": "17:14","isha": "18:35"},{"d": 9,"wd": "Wednesday","h": "29 Jumādá al-ākhirah 1448","hm": 6,"hd": 29,"fajr": "05:14","sun": "06:35","dhuhr": "11:55","asr": "15:38","mag": "17:14","isha": "18:35"},{"d": 10,"wd": "Thursday","h": "1 Rajab 1448","hm": 7,"hd": 1,"fajr": "05:15","sun": "06:36","dhuhr": "11:55","asr": "15:38","mag": "17:14","isha": "18:35"},{"d": 11,"wd": "Friday","h": "2 Rajab 1448","hm": 7,"hd": 2,"fajr": "05:16","sun": "06:37","dhuhr": "11:56","asr": "15:38","mag": "17:14","isha": "18:36"},{"d": 12,"wd": "Saturday","h": "3 Rajab 1448","hm": 7,"hd": 3,"fajr": "05:16","sun": "06:37","dhuhr": "11:56","asr": "15:39","mag": "17:15","isha": "18:36"},{"d": 13,"wd": "Sunday","h": "4 Rajab 1448","hm": 7,"hd": 4,"fajr": "05:17","sun": "06:38","dhuhr": "11:57","asr": "15:39","mag": "17:15","isha": "18:36"},{"d": 14,"wd": "Monday","h": "5 Rajab 1448","hm": 7,"hd": 5,"fajr": "05:17","sun": "06:39","dhuhr": "11:57","asr": "15:39","mag": "17:15","isha": "18:37"},{"d": 15,"wd": "Tuesday","h": "6 Rajab 1448","hm": 7,"hd": 6,"fajr": "05:18","sun": "06:39","dhuhr": "11:58","asr": "15:40","mag": "17:16","isha": "18:37"},{"d": 16,"wd": "Wednesday","h": "7 Rajab 1448","hm": 7,"hd": 7,"fajr": "05:18","sun": "06:40","dhuhr": "11:58","asr": "15:40","mag": "17:16","isha": "18:38"},{"d": 17,"wd": "Thursday","h": "8 Rajab 1448","hm": 7,"hd": 8,"fajr": "05:19","sun": "06:40","dhuhr": "11:58","asr": "15:40","mag": "17:17","isha": "18:38"},{"d": 18,"wd": "Friday","h": "9 Rajab 1448","hm": 7,"hd": 9,"fajr": "05:19","sun": "06:41","dhuhr": "11:59","asr": "15:41","mag": "17:17","isha": "18:38"},{"d": 19,"wd": "Saturday","h": "10 Rajab 1448","hm": 7,"hd": 10,"fajr": "05:20","sun": "06:42","dhuhr": "11:59","asr": "15:41","mag": "17:17","isha": "18:39"},{"d": 20,"wd": "Sunday","h": "11 Rajab 1448","hm": 7,"hd": 11,"fajr": "05:21","sun": "06:42","dhuhr": "12:00","asr": "15:42","mag": "17:18","isha": "18:39"},{"d": 21,"wd": "Monday","h": "12 Rajab 1448","hm": 7,"hd": 12,"fajr": "05:21","sun": "06:43","dhuhr": "12:00","asr": "15:42","mag": "17:18","isha": "18:40"},{"d": 22,"wd": "Tuesday","h": "13 Rajab 1448","hm": 7,"hd": 13,"fajr": "05:22","sun": "06:43","dhuhr": "12:01","asr": "15:42","mag": "17:19","isha": "18:40"},{"d": 23,"wd": "Wednesday","h": "14 Rajab 1448","hm": 7,"hd": 14,"fajr": "05:22","sun": "06:44","dhuhr": "12:01","asr": "15:43","mag": "17:19","isha": "18:41"},{"d": 24,"wd": "Thursday","h": "15 Rajab 1448","hm": 7,"hd": 15,"fajr": "05:23","sun": "06:44","dhuhr": "12:02","asr": "15:44","mag": "17:20","isha": "18:41"},{"d": 25,"wd": "Friday","h": "16 Rajab 1448","hm": 7,"hd": 16,"fajr": "05:23","sun": "06:44","dhuhr": "12:02","asr": "15:44","mag": "17:20","isha": "18:42"},{"d": 26,"wd": "Saturday","h": "17 Rajab 1448","hm": 7,"hd": 17,"fajr": "05:23","sun": "06:45","dhuhr": "12:03","asr": "15:45","mag": "17:21","isha": "18:42"},{"d": 27,"wd": "Sunday","h": "18 Rajab 1448","hm": 7,"hd": 18,"fajr": "05:24","sun": "06:45","dhuhr": "12:03","asr": "15:45","mag": "17:22","isha": "18:43"},{"d": 28,"wd": "Monday","h": "19 Rajab 1448","hm": 7,"hd": 19,"fajr": "05:24","sun": "06:46","dhuhr": "12:04","asr": "15:46","mag": "17:22","isha": "18:44"},{"d": 29,"wd": "Tuesday","h": "20 Rajab 1448","hm": 7,"hd": 20,"fajr": "05:25","sun": "06:46","dhuhr": "12:04","asr": "15:46","mag": "17:23","isha": "18:44"},{"d": 30,"wd": "Wednesday","h": "21 Rajab 1448","hm": 7,"hd": 21,"fajr": "05:25","sun": "06:46","dhuhr": "12:05","asr": "15:47","mag": "17:23","isha": "18:45"},{"d": 31,"wd": "Thursday","h": "22 Rajab 1448","hm": 7,"hd": 22,"fajr": "05:25","sun": "06:47","dhuhr": "12:05","asr": "15:48","mag": "17:24","isha": "18:45"}]};
+var BN = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+function bn(s){ return String(s).replace(/[0-9]/g, function(c){ return BN[+c]; }); }
+function pad(n){ return (n<10?'0':'')+n; }
+var WD_BN = {Sunday:'রবিবার',Monday:'সোমবার',Tuesday:'মঙ্গলবার',Wednesday:'বুধবার',Thursday:'বৃহস্পতিবার',Friday:'শুক্রবার',Saturday:'শনিবার'};
+var HM_BN = {1:'মুহাররম',2:'সফর',3:'রবিউল আউয়াল',4:'রবিউস সানি',5:'জুমাদাল উলা',6:'জুমাদাল আখিরাহ',7:'রজব',8:'শাবান',9:'রমাদান',10:'শাওয়াল',11:'জিলকদ',12:'জিলহজ'};
+var MON_BN = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+var BN_MON = ['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+var HIJRI_ADJ = 1; /* default reckoning for this Bangladesh page: Bangladesh (1 day after Saudi / Umm al-Qura); the events-section toggle can switch it to 0 = Saudi */
+
+/* Bangladesh (revised) Bangla calendar date for a Gregorian Date */
+function banglaDate(dt){
+  var y=dt.getFullYear(), m=dt.getMonth()+1, d=dt.getDate();
+  var leap = (y%4===0 && (y%100!==0 || y%400===0));
+  var lens=[31,31,31,31,31,30,30,30,30,30, leap?30:29, 30]; /* Boishakh..Choitro; Falgun 30 in leap year */
+  var startY = (m>4 || (m===4 && d>=14)) ? y : y-1; /* Bangla year starts 14 April */
+  var by = startY - 593;
+  var base = new Date(startY,3,14);
+  var diff = Math.floor((new Date(y,m-1,d) - base)/86400000);
+  var mi=0; while(diff>=lens[mi]){ diff-=lens[mi]; mi++; }
+  return { d: diff+1, m: BN_MON[mi], y: by };
+}
+/* Hijri parts via Umm al-Qura (matches the verified Bangladesh dates), shifted by HIJRI_ADJ */
+function hijriParts(dt){
+  try{
+    var shifted = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - HIJRI_ADJ);
+    var parts = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'numeric',year:'numeric'}).formatToParts(shifted);
+    var o={};
+    parts.forEach(function(p){ o[p.type]=p.value; });
+    return { d:+o.day, m:+o.month, y:+o.year };
+  }catch(e){ return null; }
+}
+function hijriStr(dt){
+  var h=hijriParts(dt); if(!h) return '';
+  return bn(h.d)+' '+(HM_BN[h.m]||'')+' '+bn(h.y)+' হিজরি';
+}
+/* --- In-browser solar prayer-time calculation (Karachi: Fajr/Isha 18°, Asr Hanafi shadow factor 2) --- */
+function _fix360(a){ return a-360*Math.floor(a/360); }
+function _fix24(a){ return a-24*Math.floor(a/24); }
+function _dtr(d){ return d*Math.PI/180; }
+function _rtd(r){ return r*180/Math.PI; }
+function calcPrayerTimes(dt){
+  var LAT=24.8510, LNG=89.3697, TZ=6;
+  var y=dt.getFullYear(), mo=dt.getMonth()+1, d=dt.getDate();
+  var yy=y, mm=mo; if(mm<=2){ yy-=1; mm+=12; }
+  var A=Math.floor(yy/100), B=2-A+Math.floor(A/4);
+  var jd=Math.floor(365.25*(yy+4716))+Math.floor(30.6001*(mm+1))+d+B-1524.5 - LNG/(15*24);
+  var D=jd-2451545.0;
+  var g=_fix360(357.529+0.98560028*D), q=_fix360(280.459+0.98564736*D);
+  var L=_fix360(q+1.915*Math.sin(_dtr(g))+0.020*Math.sin(_dtr(2*g)));
+  var e=23.439-0.00000036*D;
+  var RA=_fix24(_rtd(Math.atan2(Math.cos(_dtr(e))*Math.sin(_dtr(L)), Math.cos(_dtr(L))))/15);
+  var decl=Math.asin(Math.sin(_dtr(e))*Math.sin(_dtr(L)));
+  var noon=_fix24(12-(q/15-RA));
+  var declD=_rtd(decl);
+  function angleTime(ang, ccw){
+    var num=(-Math.sin(_dtr(ang))-Math.sin(_dtr(declD))*Math.sin(_dtr(LAT)))/(Math.cos(_dtr(declD))*Math.cos(_dtr(LAT)));
+    var t=_rtd(Math.acos(num))/15;
+    return ccw ? noon-t : noon+t;
+  }
+  var asrAng=_rtd(Math.atan(1/(2+Math.tan(_dtr(Math.abs(LAT-declD)))))); /* Hanafi: shadow factor 2 (18 Nov 2026 -> 15:39) */
+  var asrNum=(Math.sin(_dtr(asrAng))-Math.sin(_dtr(declD))*Math.sin(_dtr(LAT)))/(Math.cos(_dtr(declD))*Math.cos(_dtr(LAT)));
+  var asrT=noon+_rtd(Math.acos(asrNum))/15;
+  var adj=TZ-LNG/15;
+  function fmt(t){
+    t=_fix24(t+adj);
+    var hh=Math.floor(t), mm=Math.round((t-hh)*60);
+    if(mm===60){ hh=(hh+1)%24; mm=0; }
+    return pad(hh)+':'+pad(mm);
+  }
+  return { fajr:fmt(angleTime(18,true)), sun:fmt(angleTime(0.833,true)), dhuhr:fmt(noon), asr:fmt(asrT), mag:fmt(angleTime(0.833,false)), isha:fmt(angleTime(18,false)) };
+}
+function addMinutes(t, n){
+  var p=t.split(':'), v=(+p[0])*60+(+p[1])+n;
+  v=((v%1440)+1440)%1440;
+  return pad(Math.floor(v/60))+':'+pad(v%60);
+}
+/* Well-known, verified duas — one per day, rotating */
+var DUAS=[
+ {ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', bn:'হে আমাদের রব! আমাদের দুনিয়াতে কল্যাণ দান করুন, আখিরাতেও কল্যাণ দান করুন এবং জাহান্নামের আজাব থেকে রক্ষা করুন।', src:'সূরা আল-বাকারা, আয়াত ২০১'},
+ {ar:'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ', bn:'হে আল্লাহ! আমি আপনার কাছে দুনিয়া ও আখিরাতে ক্ষমা ও সুস্থতা-নিরাপত্তা প্রার্থনা করছি।', src:'সুনান ইবনে মাজাহ, হাদিস ৩৮৭১'},
+ {ar:'يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ', bn:'হে অন্তরসমূহের পরিবর্তনকারী! আমার অন্তরকে আপনার দ্বীনের উপর অটল রাখুন।', src:'জামে তিরমিজি, হাদিস ৩৫২২'},
+ {ar:'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ', bn:'হে আল্লাহ! আপনার জিকির, শুকরিয়া ও সুন্দরভাবে আপনার ইবাদত করার জন্য আমাকে সাহায্য করুন।', src:'সুনান আবু দাউদ, হাদিস ১৫২২'},
+ {ar:'رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي', bn:'হে আমার রব! আমার বক্ষ প্রশস্ত করে দিন এবং আমার কাজ সহজ করে দিন।', src:'সূরা ত্ব-হা, আয়াত ২৫–২৬'},
+ {ar:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ', bn:'আল্লাহই আমাদের জন্য যথেষ্ট, তিনি কতই না উত্তম কর্মবিধায়ক।', src:'সূরা আলে ইমরান, আয়াত ১৭৩'},
+ {ar:'اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي', bn:'হে আল্লাহ! আপনি ক্ষমাশীল, ক্ষমা করতে ভালোবাসেন — সুতরাং আমাকে ক্ষমা করে দিন।', src:'জামে তিরমিজি, হাদিস ৩৫১৩'}
+];
+function renderDua(){
+  var now=dhakaNow();
+  var start=new Date(now.getFullYear(),0,0);
+  var doy=Math.floor((now-start)/86400000);
+  var dua=DUAS[doy%DUAS.length];
+  document.getElementById('duaBox').innerHTML='<div class="ar" dir="rtl">'+dua.ar+'</div><p class="bnmean"><b>অর্থ:</b> '+dua.bn+'</p><p class="src">উৎস: '+dua.src+'</p>';
+}
+
+function periodLabel(h){
+  if(h<4) return 'রাত'; if(h<6) return 'ভোর'; if(h<12) return 'সকাল';
+  if(h<15) return 'দুপুর'; if(h<17) return 'বিকেল'; if(h<19) return 'সন্ধ্যা'; return 'রাত';
+}
+function fmtTime(t){ // "05:24" 24h -> Bengali 12h display
+  var p=t.split(':'), h=+p[0], m=p[1];
+  var h12 = h%12; if(h12===0) h12=12;
+  return { main: bn(h12)+':'+bn(m), per: periodLabel(h) };
+}
+function dhakaNow(){
+  /* Asia/Dhaka wall-clock time via Intl formatToParts — safe in every browser
+     (no fragile toLocaleString re-parsing). Returns a Date whose local
+     fields equal Dhaka's wall time, as the rest of the page expects. */
+  try{
+    var parts = new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Dhaka',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',second:'numeric',hourCycle:'h23'}).formatToParts(new Date());
+    var o={};
+    parts.forEach(function(p){ o[p.type]=p.value; });
+    return new Date(+o.year, (+o.month)-1, +o.day, (+o.hour)%24, +o.minute, +o.second);
+  }catch(e){ return new Date(); }
+}
+function findDay(y,mo,d){
+  var arr = DATA[String(mo)]; if(!arr) return null;
+  for(var i=0;i<arr.length;i++) if(arr[i].d===d) return arr[i];
+  return null;
+}
+
+/* ---------- Today ---------- */
+var PRAYERS = [
+  {key:'fajr', name:'ফজর', icon:'🌅'},
+  {key:'sun', name:'সূর্যোদয়', icon:'☀️', info:true},
+  {key:'dhuhr', name:'যোহর', icon:'🌤️'},
+  {key:'asr', name:'আসর', icon:'⛅'},
+  {key:'mag', name:'মাগরিব', icon:'🌇'},
+  {key:'isha', name:'এশা', icon:'🌙'}
+];
+var todayData = null, tomorrowFajr = null;
+
+var _lastGridMin = -1;
+function renderToday(){
+  var grid = document.getElementById('todayGrid');
+  var _now0 = dhakaNow(); var _mk = _now0.getHours()*60+_now0.getMinutes();
+  var _gridOnly = (_mk === _lastGridMin);
+  if(_gridOnly){ /* only refresh countdown bar below */ }
+  _lastGridMin = _mk;
+  if(!todayData){ grid.innerHTML = '<p>আজকের সময় পাওয়া যায়নি। নিচের মাসিক সময়সূচি দেখুন।</p>'; return; }
+  var now = dhakaNow();
+  var nowMin = now.getHours()*60+now.getMinutes();
+  function mins(t){ var p=t.split(':'); return (+p[0])*60+(+p[1]); }
+  var seq = ['fajr','sun','dhuhr','asr','mag','isha'];
+  var curKey=null, nextKey=null;
+  for(var i=0;i<seq.length;i++){ if(nowMin>=mins(todayData[seq[i]])) curKey=seq[i]; }
+  for(var j=0;j<seq.length;j++){ if(nowMin<mins(todayData[seq[j]])){ nextKey=seq[j]; break; } }
+  if(!nextKey) nextKey='fajr';
+  var html='';
+  PRAYERS.forEach(function(p){
+    var f=fmtTime(todayData[p.key]);
+    var cls='pcard'; var tag='';
+    if(p.key===curKey && !p.info){ cls+=' now'; tag='<span class="tag now">এখন চলছে</span>'; }
+    if(p.key===nextKey){ cls+=' next'; tag='<span class="tag next">পরবর্তী</span>'; }
+    if(nowMin>=mins(todayData[p.key]) && p.key!==curKey && p.key!==nextKey){ cls+=' past'; }
+    html+='<div class="'+cls+'">'+tag+'<div class="pname">'+p.icon+' '+p.name+'</div><div class="ptime">'+f.main+'</div><div class="pper">'+f.per+(p.info?' — ফজরের ওয়াক্ত শেষ':'')+'</div></div>';
+  });
+  if(!_gridOnly){
+    grid.innerHTML=html;
+    /* Sehri / Ishraq / sunset / Iftar */
+    var sunsetT = todayData.mag;
+    var extra=[
+      {name:'সেহরির শেষ সময়', t:todayData.fajr, note:'ফজরের ওয়াক্ত শুরু'},
+      {name:'ইশরাক (সূর্যোদয়ের পর)', t:addMinutes(todayData.sun,20), note:'সূর্যোদয়ের ২০ মিনিট পর থেকে'},
+      {name:'সূর্যাস্ত', t:sunsetT, note:'সূর্য অস্ত যাওয়ার সময়'},
+      {name:'ইফতারের সময়', t:todayData.mag, note:'মাগরিবের ওয়াক্ত শুরু'}
+    ];
+    var eh='';
+    extra.forEach(function(x){ var f=fmtTime(x.t); eh+='<div class="xcard"><div class="xname">'+x.name+'</div><div class="xtime">'+f.main+'</div><div class="xper">'+f.per+' — '+x.note+'</div></div>'; });
+    document.getElementById('extraGrid').innerHTML=eh;
+    var fz1=fmtTime(todayData.sun), fz1e=fmtTime(addMinutes(todayData.sun,20)), fz2=fmtTime(addMinutes(todayData.dhuhr,-10)), fz3=fmtTime(todayData.dhuhr), fz4=fmtTime(addMinutes(todayData.mag,-15)), fz5=fmtTime(todayData.mag);
+    document.getElementById('forbidBox').innerHTML='<b>নিষিদ্ধ সময় (আজ):</b> সূর্যোদয় থেকে প্রায় ২০ মিনিট: '+fz1.main+' – '+fz1e.main+' ('+fz1.per+') • ঠিক দ্বিপ্রহরে '+fz2.main+' – '+fz3.main+' • সূর্যাস্তের আগে '+fz4.main+' – '+fz5.main+' — এই সময়গুলোতে নামাজ পড়া নিষিদ্ধ।';
+  }
+  /* next bar */
+  var target;
+  if(nextKey==='fajr' && nowMin>=mins(todayData['isha'])){
+    var tf = tomorrowFajr || todayData['fajr'];
+    target = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1, +tf.split(':')[0], +tf.split(':')[1], 0);
+  } else {
+    var nt = todayData[nextKey];
+    target = new Date(now.getFullYear(),now.getMonth(),now.getDate(), +nt.split(':')[0], +nt.split(':')[1], 0);
+  }
+  var diff = Math.max(0, Math.floor((target-now)/1000));
+  var hh=Math.floor(diff/3600), mm=Math.floor((diff%3600)/60), ss=diff%60;
+  var nextName = {fajr:'ফজর',sun:'সূর্যোদয়',dhuhr:'যোহর',asr:'আসর',mag:'মাগরিব',isha:'এশা'}[nextKey];
+  var nextTimeStr = (nextKey==='fajr' && nowMin>=mins(todayData['isha'])) ? (tomorrowFajr||todayData['fajr']) : todayData[nextKey];
+  var nf = fmtTime(nextTimeStr);
+  document.getElementById('nextbar').innerHTML =
+    '<span>পরবর্তী ওয়াক্ত: <b>'+nextName+'</b> — '+nf.main+' ('+nf.per+')</span><span class="cd">বাকি '+bn(pad(hh))+':'+bn(pad(mm))+':'+bn(pad(ss))+'</span>';
+}
+
+function dayTimesFor(dt){
+  var baked = (dt.getFullYear()===2026) ? findDay(dt.getFullYear(), dt.getMonth()+1, dt.getDate()) : null;
+  if(baked) return baked;
+  return calcPrayerTimes(dt); /* any other date: computed in the browser, no API */
+}
+function setTodayFromData(){
+  var now = dhakaNow();
+  var y=now.getFullYear(), mo=now.getMonth()+1, d=now.getDate();
+  todayData = dayTimesFor(now);
+  var tmr = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+  var td = dayTimesFor(tmr);
+  tomorrowFajr = td ? td.fajr : null;
+  /* header dates: Gregorian + Bangla + Hijri */
+  document.getElementById('gdate').textContent = WD_BN[['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][now.getDay()]]+', '+bn(d)+' '+MON_BN[mo-1]+' '+bn(y);
+  var bd = banglaDate(now);
+  document.getElementById('bdate').textContent = 'বাংলা তারিখ: '+bn(bd.d)+' '+bd.m+' '+bn(bd.y)+' বঙ্গাব্দ';
+  var hp = (todayData.hm && HIJRI_ADJ===0) ? {d:todayData.hd, m:todayData.hm, y:1448} : hijriParts(now);
+  if(hp) document.getElementById('hdate').textContent = 'হিজরি: '+bn(hp.d)+' '+(HM_BN[hp.m]||'')+' '+bn(hp.y)+' হিজরি';
+  document.getElementById('todaySub').textContent = 'আজ '+bn(d)+' '+MON_BN[mo-1]+' '+bn(y)+' — ওয়াক্ত শুরু হওয়ার সময় (বগুড়া)। জামাতের সময় মসজিদভেদে আলাদা হতে পারে।';
+  _lastGridMin = -1;
+  renderToday();
+}
+
+/* Optional browser notifications at prayer times (in-memory opt-in, permission-based) */
+var NOTIFY_ON=false, _lastNotifyKey='';
+function checkNotify(now){
+  if(!NOTIFY_ON || !('Notification' in window) || Notification.permission!=='granted' || !todayData) return;
+  var names={fajr:'ফজর',dhuhr:'যোহর',asr:'আসর',mag:'মাগরিব',isha:'এশা'};
+  var hm=pad(now.getHours())+':'+pad(now.getMinutes());
+  for(var k in names){
+    if(todayData[k]===hm){
+      var key=now.getDate()+'-'+k;
+      if(_lastNotifyKey!==key){ _lastNotifyKey=key; try{ new Notification('নামাজের সময় — বগুড়া', {body: names[k]+'-এর ওয়াক্ত শুরু হয়েছে ('+fmtTime(hm).main+' '+fmtTime(hm).per+')'}); }catch(e){} }
+    }
+  }
+}
+
+/* ---------- Clock + Ramadan countdown ---------- */
+/* Countdown target follows the selected reckoning, so it always agrees with
+   the Ramadan event card: Saudi (Umm al-Qura) base = 8 Feb 2027, and the
+   Bangladesh view (the default, HIJRI_ADJ = 1) shifts it to 9 Feb 2027. */
+var RAMADAN_SAUDI = new Date('2027-02-08T00:00:00+06:00').getTime();
+function ramadanTargetMs(){ return RAMADAN_SAUDI + HIJRI_ADJ*86400000; }
+function ramadanStartDate(){ /* Gregorian Date (Dhaka) of 1 Ramadan under the current reckoning */
+  var dh=new Date(ramadanTargetMs()+6*3600000);
+  return new Date(dh.getUTCFullYear(), dh.getUTCMonth(), dh.getUTCDate());
+}
+function updateRamadanMeta(){
+  var start=ramadanStartDate();
+  var wd=WD_BN[['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][start.getDay()]];
+  var label=(HIJRI_ADJ===1?'বাংলাদেশ হিসাব':'সৌদি হিসাব');
+  var chip=document.getElementById('ramadanTargetChip');
+  if(chip) chip.textContent='কাউন্টডাউন লক্ষ্য ('+label+'): '+wd+', '+bn(start.getDate())+' '+MON_BN[start.getMonth()]+' '+bn(start.getFullYear());
+  var t=dayTimesFor(start);
+  if(t){
+    var fs=fmtTime(t.fajr), fm=fmtTime(t.mag);
+    var sc=document.getElementById('ramadanSehriChip');
+    if(sc) sc.textContent='সেহরি শেষ (বগুড়া, প্রথম রোজা): '+fs.per+' '+fs.main;
+    var ic=document.getElementById('ramadanIftarChip');
+    if(ic) ic.textContent='ইফতার (বগুড়া, প্রথম রোজা): '+fm.per+' '+fm.main;
+  }
+  renderRamadanTable();
+}
+/* Ramadan 2027: full 30-day Sehri (Fajr) & Iftar (Maghrib) table for Bogura.
+   Start date follows the selected reckoning; times use the same source as
+   today's card and the monthly table (dayTimesFor). */
+function renderRamadanTable(){
+  var body=document.getElementById('ramadanBody'); if(!body) return;
+  var start=ramadanStartDate();
+  var now=dhakaNow(); var today0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var html='';
+  for(var i=0;i<30;i++){
+    var dt=new Date(start.getFullYear(), start.getMonth(), start.getDate()+i);
+    var t=dayTimesFor(dt); if(!t) continue;
+    var fs=fmtTime(t.fajr), fm=fmtTime(t.mag);
+    var isToday = dt.getTime()===today0.getTime();
+    var fri = dt.getDay()===5;
+    html+='<tr class="'+(fri?'friday ':'')+(isToday?'today-row':'')+'">'
+      +'<td>'+bn(i+1)+(isToday?'<span class="today-badge">আজ</span>':'')+'</td>'
+      +'<td class="date">'+bn(dt.getDate())+' '+MON_BN[dt.getMonth()]+' '+bn(dt.getFullYear())+'</td>'
+      +'<td style="font-weight:400;font-size:13.5px">'+WD_BN[['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dt.getDay()]]+'</td>'
+      +'<td>'+fs.main+' <span style="color:var(--muted);font-size:13px">('+fs.per+')</span></td>'
+      +'<td>'+fm.main+' <span style="color:var(--muted);font-size:13px">('+fm.per+')</span></td></tr>';
+  }
+  body.innerHTML=html;
+  var sub=document.getElementById('ramadanTableSub');
+  if(sub){
+    var last=new Date(start.getFullYear(), start.getMonth(), start.getDate()+29);
+    sub.textContent='প্রথম রোজা '+bn(start.getDate())+' '+MON_BN[start.getMonth()]+' '+bn(start.getFullYear())+' থেকে '+bn(last.getDate())+' '+MON_BN[last.getMonth()]+' '+bn(last.getFullYear())+' পর্যন্ত — প্রতিদিনের সেহরির শেষ সময় (ফজরের ওয়াক্ত) ও ইফতারের সময় (মাগরিবের ওয়াক্ত), বগুড়ার হিসাবে। বর্তমান হিসাব: '+(HIJRI_ADJ===1?'বাংলাদেশ (১ দিন পরে)':'সৌদি হিসাব')+' — দিবস অংশে হিসাব বদলালে এই টেবিলের তারিখও সেই অনুযায়ী সরে যাবে।';
+  }
+}
+function tick(){
+  var now = dhakaNow();
+  var h=now.getHours(), m=now.getMinutes(), s=now.getSeconds();
+  var h12=h%12; if(h12===0)h12=12;
+  document.getElementById('clock').textContent = bn(h12)+':'+bn(pad(m))+':'+bn(pad(s))+' '+periodLabel(h);
+  var diff = ramadanTargetMs() - Date.now();
+  if(diff<=0){
+    document.getElementById('rDays').textContent='০'; document.getElementById('rHours').textContent='০';
+    document.getElementById('rMins').textContent='০'; document.getElementById('rSecs').textContent='০';
+  } else {
+    var d=Math.floor(diff/86400000), hh=Math.floor(diff%86400000/3600000), mm=Math.floor(diff%3600000/60000), ss=Math.floor(diff%60000/1000);
+    document.getElementById('rDays').textContent=bn(d);
+    document.getElementById('rHours').textContent=bn(pad(hh));
+    document.getElementById('rMins').textContent=bn(pad(mm));
+    document.getElementById('rSecs').textContent=bn(pad(ss));
+  }
+  if(diff<=0){ var rd=document.getElementById('ramadanDone'); if(rd) rd.style.display='block'; }
+  /* midnight rollover: refresh the whole schedule without a page reload */
+  var dayKey=now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+  if(window._dayKey && window._dayKey!==dayKey){ setTodayFromData(); renderEvents(); renderDua(); renderCalendar(); renderMonth(); updateRamadanMeta(); }
+  window._dayKey=dayKey;
+  checkNotify(now);
+  renderToday();
+}
+
+/* ---------- Monthly tables (any month Nov 2026 – Dec 2027, computed in-browser) ---------- */
+var MON_MIN_Y=2026, MON_MIN_M=10, MON_MAX_Y=2027, MON_MAX_M=11; /* 0-based months */
+var curMY=2026, curMM=10;
+function renderMonth(){
+  document.getElementById('monthlyTitle').textContent='মাসিক সময়সূচি — '+MON_BN[curMM]+' '+bn(curMY);
+  var now=dhakaNow();
+  var ndays=new Date(curMY,curMM+1,0).getDate();
+  var html='';
+  for(var d=1; d<=ndays; d++){
+    var dt=new Date(curMY,curMM,d);
+    var t=dayTimesFor(dt); /* same source as today's card: verified baked Nov–Dec 2026 data first, in-browser calculation for every other month — so today's table row always matches the card */
+    var hp=hijriParts(dt);
+    var isToday = dt.getFullYear()===now.getFullYear() && dt.getMonth()===now.getMonth() && dt.getDate()===now.getDate();
+    var fri = dt.getDay()===5;
+    var f1=fmtTime(t.fajr), f2=fmtTime(t.sun), f3=fmtTime(t.dhuhr), f4=fmtTime(t.asr), f5=fmtTime(t.mag), f6=fmtTime(t.isha);
+    html+='<tr class="'+(fri?'friday ':'')+(isToday?'today-row':'')+'">'
+      +'<td class="date">'+bn(d)+' '+MON_BN[curMM]+(isToday?'<span class="today-badge">আজ</span>':'')+'</td>'
+      +'<td style="font-weight:400;font-size:13.5px">'+WD_BN[['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dt.getDay()]]+'</td>'
+      +'<td class="hide-m" style="font-weight:400;font-size:13.5px">'+(hp?bn(hp.d)+' '+(HM_BN[hp.m]||''):'')+'</td>'
+      +'<td>'+f1.main+'</td><td class="hide-m">'+f2.main+'</td><td>'+f3.main+'</td><td>'+f4.main+'</td><td>'+f5.main+'</td><td>'+f6.main+'</td></tr>';
+  }
+  document.getElementById('monthBody').innerHTML=html;
+  var atMin = (curMY===MON_MIN_Y && curMM===MON_MIN_M), atMax = (curMY===MON_MAX_Y && curMM===MON_MAX_M);
+  document.getElementById('prevMonth').disabled=atMin;
+  document.getElementById('nextMonth').disabled=atMax;
+  document.getElementById('prevMonth').style.opacity=atMin?'.45':'';
+  document.getElementById('nextMonth').style.opacity=atMax?'.45':'';
+}
+function selectMonth(y,m){
+  if(m<0){ m=11; y--; } if(m>11){ m=0; y++; }
+  if(y<MON_MIN_Y || (y===MON_MIN_Y && m<MON_MIN_M)){ y=MON_MIN_Y; m=MON_MIN_M; }
+  if(y>MON_MAX_Y || (y===MON_MAX_Y && m>MON_MAX_M)){ y=MON_MAX_Y; m=MON_MAX_M; }
+  curMY=y; curMM=m;
+  renderMonth();
+}
+document.getElementById('prevMonth').addEventListener('click',function(){ selectMonth(curMY,curMM-1); });
+document.getElementById('nextMonth').addEventListener('click',function(){ selectMonth(curMY,curMM+1); });
+document.getElementById('todayMonth').addEventListener('click',function(){
+  var n=dhakaNow(); selectMonth(n.getFullYear(), n.getMonth());
+  document.getElementById('monthly').scrollIntoView({behavior:'smooth'});
+});
+
+/* ---------- Islamic events ---------- */
+var EVENTS=[
+ {date:'2026-11-11', name:'জুমাদাল আখিরাহ মাসের শুরু', hijri:'১ জুমাদাল আখিরাহ ১৪৪৮', desc:'হিজরি ১৪৪৮ সালের জুমাদাল আখিরাহ মাস শুরু হয়েছে।'},
+ {date:'2026-11-23', name:'আইয়ামে বীজ (সাদা দিনসমূহ)', hijri:'১৩–১৫ জুমাদাল আখিরাহ ১৪৪৮', desc:'প্রতি হিজরি মাসের ১৩, ১৪ ও ১৫ তারিখে রোজা রাখা সুন্নত — এই তিন দিনকে আইয়ামে বীজ বা সাদা দিন বলা হয়।'},
+ {date:'2026-12-10', name:'রজব মাসের শুরু', hijri:'১ রজব ১৪৪৮', desc:'চারটি পবিত্র (হারাম) মাসের একটি রজব শুরু। এই মাস থেকেই রমাদানের প্রস্তুতি শুরু হয়।'},
+ {date:'2026-12-22', name:'আইয়ামে বীজ (সাদা দিনসমূহ)', hijri:'১৩–১৫ রজব ১৪৪৮', desc:'প্রতি হিজরি মাসের ১৩, ১৪ ও ১৫ তারিখে রোজা রাখা সুন্নত — এই তিন দিনকে আইয়ামে বীজ বা সাদা দিন বলা হয়।'},
+ {date:'2027-01-05', night:true, name:'শবে মেরাজ', hijri:'২৭ রজব ১৪৪৮', desc:'মহানবী হজরত মুহাম্মদ (সা.)-এর ইসরা ও মেরাজের পবিত্র রাত। এই রাতেই পাঁচ ওয়াক্ত নামাজ ফরজ হয়।'},
+ {date:'2027-01-09', name:'শাবান মাসের শুরু', hijri:'১ শাবান ১৪৪৮', desc:'রমাদানের আগের মাস। নবীজি (সা.) এই মাসে বেশি বেশি রোজা রাখতেন।'},
+ {date:'2027-01-23', night:true, name:'শবে বরাত', hijri:'১৫ শাবান ১৪৪৮', desc:'লাইলাতুল বারাআত — ক্ষমা ও মুক্তির রাত হিসেবে বাংলাদেশসহ দক্ষিণ এশিয়ায় ব্যাপকভাবে পালিত হয়। পরদিন ১৫ শাবানের দিনটি বাংলাদেশে সরকারি ছুটি থাকে।'},
+ {date:'2027-02-08', name:'পবিত্র রমাদান শুরু (সম্ভাব্য)', hijri:'১ রমাদান ১৪৪৮', desc:'সৌদি/উম্মুল কুরা হিসাবে প্রথম রোজা ৮ ফেব্রুয়ারি; বাংলাদেশে চাঁদ একদিন পরে দেখা গেলে প্রথম রোজা ৯ ফেব্রুয়ারি — বাংলাদেশে ৯ ফেব্রুয়ারিই বেশি সম্ভাব্য। প্রথম তারাবি আগের রাতে এবং প্রথম সেহরি প্রথম রোজার ভোরে। চূড়ান্ত তারিখ জাতীয় চাঁদ দেখা কমিটির ঘোষণায় নির্ধারিত হবে।'},
+ {date:'2027-02-27', night:true, name:'শেষ দশক শুরু — লাইলাতুল কদর অনুসন্ধান', hijri:'২১ রমাদান ১৪৪৮', desc:'রমাদানের শেষ দশকের বেজোড় রাতগুলোতে লাইলাতুল কদর অনুসন্ধান করা হয় — যে রাত হাজার মাসের চেয়ে উত্তম।'},
+ {date:'2027-03-06', night:true, name:'লাইলাতুল কদর (সম্ভাব্য প্রধান রাত)', hijri:'২৭ রমাদান ১৪৪৮', desc:'অধিকাংশ আলেমের মতে ২৭তম রাতটি লাইলাতুল কদর হওয়ার সম্ভাবনা সবচেয়ে বেশি। তবে শেষ দশকের সব বেজোড় রাতেই ইবাদত করা উচিত।'},
+ {date:'2027-03-09', name:'ঈদুল ফিতর (সম্ভাব্য)', hijri:'১ শাওয়াল ১৪৪৮', desc:'সৌদি হিসাবে ঈদ ৯ মার্চ; বাংলাদেশে রমাদান ৯ ফেব্রুয়ারি শুরু হলে ঈদ ১০ মার্চ হওয়ার সম্ভাবনা বেশি। রমাদানের রোজা শেষে মুসলমানদের সবচেয়ে বড় আনন্দের উৎসব। ঈদের নামাজের আগে ফিতরা আদায় করা ওয়াজিব।'},
+ {date:'2027-04-08', name:'জিলকদ মাসের শুরু', hijri:'১ জিলকদ ১৪৪৮', desc:'পবিত্র (হারাম) মাসগুলোর একটি। হজের মৌসুমের প্রস্তুতির মাস।'},
+ {date:'2027-05-07', name:'জিলহজ মাসের শুরু', hijri:'১ জিলহজ ১৪৪৮', desc:'হজ ও কোরবানির মাস শুরু। প্রথম দশদিনের আমল আল্লাহর কাছে অত্যন্ত প্রিয়।'},
+ {date:'2027-05-15', name:'আরাফার দিন', hijri:'৯ জিলহজ ১৪৪৮', desc:'হজের মূল দিন। হাজিরা আরাফাতের ময়দানে অবস্থান করেন। অন্যদের জন্য এই দিনে রোজা রাখলে দুই বছরের গুনাহ মাফের আশা করা হয়।'},
+ {date:'2027-05-16', name:'ঈদুল আজহা (কোরবানির ঈদ)', hijri:'১০ জিলহজ ১৪৪৮', desc:'ত্যাগের মহিমায় উদ্ভাসিত ঈদ। সামর্থ্যবানদের জন্য কোরবানি করা ওয়াজিব।'},
+ {date:'2027-05-17', name:'আইয়ামে তাশরিক', hijri:'১১–১৩ জিলহজ ১৪৪৮', desc:'জিলহজের ১১, ১২ ও ১৩ তারিখ — এই দিনগুলোতেও কোরবানি করা যায় এবং প্রত্যেক ফরজ নামাজের পর তাকবিরে তাশরিক পড়া হয়।'},
+ {date:'2027-06-06', name:'হিজরি নববর্ষ', hijri:'১ মুহাররম ১৪৪৯', desc:'নতুন হিজরি বছর ১৪৪৯ শুরু। মুহাররম আল্লাহর মাস এবং চার পবিত্র মাসের একটি।'},
+ {date:'2027-06-15', name:'পবিত্র আশুরা', hijri:'১০ মুহাররম ১৪৪৯', desc:'কারবালার শহীদদের স্মরণের দিন। ৯ ও ১০ অথবা ১০ ও ১১ মুহাররম রোজা রাখা সুন্নত। বাংলাদেশে সরকারি ছুটি।'},
+ {date:'2027-08-03', name:'রবিউল আউয়াল মাসের শুরু', hijri:'১ রবিউল আউয়াল ১৪৪৯', desc:'মহানবী (সা.)-এর জন্মের মাস শুরু।'},
+ {date:'2027-08-14', name:'ঈদে মিলাদুন্নবী (সা.)', hijri:'১২ রবিউল আউয়াল ১৪৪৯', desc:'মহানবী হজরত মুহাম্মদ (সা.)-এর জন্মদিন। বাংলাদেশে সরকারি ছুটির দিন হিসেবে পালিত হয়।'},
+ {date:'2027-09-12', name:'ফাতেহা-ই-ইয়াজদাহম', hijri:'১১ রবিউস সানি ১৪৪৯', desc:'হজরত আবদুল কাদের জিলানী (রহ.)-এর ওফাত দিবস উপলক্ষে বাংলাদেশে পালিত হয়।'},
+ {date:'2027-11-29', name:'রজব মাসের শুরু (১৪৪৯)', hijri:'১ রজব ১৪৪৯', desc:'আবারও পবিত্র রজব মাসের আগমন — পরের রমাদানের (২০২৮) প্রস্তুতির শুরু।'},
+ {date:'2027-12-25', night:true, name:'শবে মেরাজ', hijri:'২৭ রজব ১৪৪৯', desc:'বছরে দ্বিতীয়বার শবে মেরাজ — কারণ হিজরি বছর ইংরেজি বছরের চেয়ে প্রায় ১১ দিন ছোট।'}
+];
+/* Effective Gregorian date of an event: base dates are Saudi / Umm al-Qura;
+   the Bangladesh view shifts every event one day later, just like the calendar. */
+function evEffDate(ev){
+  var p=ev.date.split('-'); var dt=new Date(+p[0],+p[1]-1,+p[2]);
+  dt.setDate(dt.getDate()+HIJRI_ADJ);
+  return dt;
+}
+function eventCard(ev, today0){
+  var dt=evEffDate(ev);
+  var diff=Math.round((dt-today0)/86400000);
+  var cls='ev'; var daysTxt='';
+  if(diff<0){ cls+=' past'; daysTxt='অতিবাহিত হয়েছে'; }
+  else if(diff===0){ cls+=' soon'; daysTxt='আজই!'; }
+  else if(diff<=30){ cls+=' soon'; daysTxt='আর মাত্র '+bn(diff)+' দিন বাকি'; }
+  else { daysTxt='আর '+bn(diff)+' দিন বাকি'; }
+  var wd=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dt.getDay()];
+  var nightHtml='';
+  if(ev.night){
+    var eve=new Date(dt); eve.setDate(eve.getDate()-1);
+    nightHtml='<span class="days" style="background:var(--surface2)">🌙 দিবাগত রাত — '+bn(eve.getDate())+' '+MON_BN[eve.getMonth()]+' '+bn(eve.getFullYear())+' সন্ধ্যা (মাগরিব) থেকে শুরু</span> ';
+  }
+  return '<article class="'+cls+'"><div class="dbox"><div class="dd">'+bn(dt.getDate())+'</div><div class="dm">'+MON_BN[dt.getMonth()]+'<br>'+bn(dt.getFullYear())+'</div></div>'
+    +'<div><h3>'+ev.name+'</h3><div class="hij">'+ev.hijri+' • '+WD_BN[wd]+'</div><p>'+ev.desc+'</p>'+nightHtml+'<span class="days">'+daysTxt+'</span></div></article>';
+}
+function renderEvents(){
+  var now=dhakaNow(); var today0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var h1='', h2='';
+  EVENTS.forEach(function(ev){
+    var eff=evEffDate(ev);
+    var effStr=eff.getFullYear()+'-'+pad(eff.getMonth()+1)+'-'+pad(eff.getDate());
+    if(effStr<='2026-12-31') h1+=eventCard(ev, today0); else h2+=eventCard(ev, today0);
+  });
+  document.getElementById('eventGrid').innerHTML=h1;
+  document.getElementById('eventGridBig').innerHTML=h2;
+  /* Monday/Thursday voluntary fasts and Fridays for the next 60 days from today */
+  document.getElementById('listRangeTitle').textContent='আসন্ন দিবস ও নফল রোজার দিনসমূহ';
+  var mt=[], ju=[];
+  var end=new Date(today0); end.setDate(end.getDate()+60);
+  for(var t=new Date(today0); t<=end; t.setDate(t.getDate()+1)){
+    var lbl=bn(t.getDate())+' '+MON_BN[t.getMonth()];
+    if(t.getDay()===1||t.getDay()===4) mt.push(lbl+' ('+WD_BN[['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][t.getDay()]]+')');
+    if(t.getDay()===5) ju.push(lbl);
+  }
+  document.getElementById('monThuList').textContent=mt.join(', ')+' — নবীজি (সা.) সোম ও বৃহস্পতিবার রোজা রাখতেন; এই দিনগুলোতে বান্দার আমল আল্লাহর কাছে পেশ করা হয়।';
+  document.getElementById('jumuahList').textContent=ju.join(', ');
+}
+
+/* ---------- Events calendar grid ---------- */
+var EV_MAP={};
+function buildEvMap(){ EV_MAP={}; EVENTS.forEach(function(ev){ EV_MAP[dstr(evEffDate(ev))]=ev; }); }
+function dstr(dt){ return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate()); }
+var _n0=dhakaNow();
+var calY=_n0.getFullYear(), calM=_n0.getMonth(), calSel=dstr(_n0);
+if(calY<2026||(calY===2026&&calM<10)){ calY=2026; calM=10; }
+if(calY>2027||(calY===2027&&calM>11)){ calY=2027; calM=11; }
+function marksFor(dt){
+  var marks=[]; var hp=hijriParts(dt); var wd=dt.getDay();
+  var ev=EV_MAP[dstr(dt)];
+  if(ev) marks.push({cls:'major', label:ev.name, desc:ev.desc+(ev.night?' এটি দিবাগত রাত — আগের দিন সন্ধ্যা (মাগরিব) থেকে শুরু হয়।':'')});
+  if(hp && hp.d===1) marks.push({cls:'start', label:'হিজরি মাসের শুরু', desc:bn(1)+' '+(HM_BN[hp.m]||'')+' '+bn(hp.y)+' — নতুন হিজরি মাস শুরু।'});
+  if(hp && hp.d>=13 && hp.d<=15) marks.push({cls:'beez', label:'আইয়ামে বীজের রোজা', desc:'হিজরি '+bn(hp.d)+' তারিখ — আইয়ামে বীজ (সাদা দিন); এই দিনে রোজা রাখা সুন্নত।'});
+  if(wd===1||wd===4) marks.push({cls:'fast', label:'নফল রোজা ('+(wd===1?'সোমবার':'বৃহস্পতিবার')+')', desc:'নবীজি (সা.) সোম ও বৃহস্পতিবার রোজা রাখতেন; এই দিনে বান্দার আমল আল্লাহর কাছে পেশ করা হয়।'});
+  if(wd===5) marks.push({cls:'jumuah', label:'জুমার দিন', desc:'সপ্তাহের শ্রেষ্ঠ দিন। এই দিনে দরুদ পাঠ, সূরা কাহফ তিলাওয়াত ও একটি বিশেষ মুহূর্তে দোয়া কবুলের সুসংবাদ রয়েছে।'});
+  return marks;
+}
+function showCalDetail(dt){
+  var marks=marksFor(dt);
+  var wd=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][dt.getDay()];
+  var bd=banglaDate(dt);
+  var html='<h3>'+WD_BN[wd]+', '+bn(dt.getDate())+' '+MON_BN[dt.getMonth()]+' '+bn(dt.getFullYear())+'</h3>'
+    +'<p>হিজরি: '+hijriStr(dt)+' • বাংলা: '+bn(bd.d)+' '+bd.m+' '+bn(bd.y)+'</p>';
+  if(!marks.length) html+='<p>এই দিনে বিশেষ কোনো দিবস নেই।</p>';
+  marks.forEach(function(mk){ html+='<p><b>'+mk.label+':</b> '+mk.desc+'</p>'; });
+  document.getElementById('calDetail').innerHTML=html;
+}
+function renderCalendar(){
+  document.getElementById('calTitle').textContent=MON_BN[calM]+' '+bn(calY);
+  var dow=['রবি','সোম','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
+  var dh=''; dow.forEach(function(x){ dh+='<div class="cal-dow">'+x+'</div>'; });
+  document.getElementById('calDow').innerHTML=dh;
+  var first=new Date(calY,calM,1); var startDay=first.getDay();
+  var ndays=new Date(calY,calM+1,0).getDate();
+  var todayS=dstr(dhakaNow());
+  var html='';
+  for(var i=0;i<startDay;i++) html+='<div class="cal-cell empty"></div>';
+  for(var d=1;d<=ndays;d++){
+    var dt=new Date(calY,calM,d); var ds=dstr(dt); var hp=hijriParts(dt);
+    var marks=marksFor(dt);
+    var cls='cal-cell'+(dt.getDay()===5?' fri':'')+(ds===todayS?' today':'')+(ds===calSel?' sel':'');
+    var dots=''; marks.forEach(function(mk){ dots+='<span class="dot '+mk.cls+'"></span>'; });
+    html+='<button type="button" class="'+cls+'" data-date="'+ds+'"><span class="cd">'+bn(d)+'</span><span class="ch">'+(hp?bn(hp.d)+' '+ (HM_BN[hp.m]||''):'')+'</span><span class="cal-dots">'+dots+'</span></button>';
+  }
+  var grid=document.getElementById('calGrid'); grid.innerHTML=html;
+  var cells=grid.querySelectorAll('[data-date]');
+  for(var j=0;j<cells.length;j++){
+    cells[j].addEventListener('click',function(){
+      calSel=this.getAttribute('data-date');
+      var p=calSel.split('-'); showCalDetail(new Date(+p[0],+p[1]-1,+p[2]));
+      renderCalendarSoft();
+    });
+  }
+  var sp=calSel.split('-');
+  if(+sp[0]===calY && (+sp[1]-1)===calM) showCalDetail(new Date(+sp[0],+sp[1]-1,+sp[2]));
+}
+function renderCalendarSoft(){ /* refresh selection highlight only */
+  var grid=document.getElementById('calGrid'); var cells=grid.querySelectorAll('[data-date]');
+  for(var j=0;j<cells.length;j++){ if(cells[j].getAttribute('data-date')===calSel) cells[j].classList.add('sel'); else cells[j].classList.remove('sel'); }
+}
+function calMove(dir){
+  var nm=calM+dir, ny=calY;
+  if(nm<0){ nm=11; ny--; } if(nm>11){ nm=0; ny++; }
+  if(ny<2026||(ny===2026&&nm<10)||ny>2027||(ny===2027&&nm>11)) return;
+  calY=ny; calM=nm; renderCalendar();
+}
+document.getElementById('calPrev').addEventListener('click',function(){ calMove(-1); });
+document.getElementById('calNext').addEventListener('click',function(){ calMove(1); });
+document.getElementById('calToday').addEventListener('click',function(){
+  var n=dhakaNow(); calY=n.getFullYear(); calM=n.getMonth(); calSel=dstr(n);
+  if(calY<2026||(calY===2026&&calM<10)){ calY=2026; calM=10; }
+  if(calY>2027||(calY===2027&&calM>11)){ calY=2027; calM=11; }
+  renderCalendar();
+});
+/* view toggle: calendar grid / chronological list */
+var viewCalBtn=document.getElementById('viewCal'), viewListBtn=document.getElementById('viewList');
+function setView(cal){
+  viewCalBtn.setAttribute('aria-pressed', cal?'true':'false');
+  viewListBtn.setAttribute('aria-pressed', cal?'false':'true');
+  document.getElementById('calWrap').style.display=cal?'':'none';
+  document.getElementById('listWrap').style.display=cal?'none':'';
+}
+viewCalBtn.addEventListener('click',function(){ setView(true); });
+viewListBtn.addEventListener('click',function(){ setView(false); });
+/* Hijri reckoning: Saudi (Umm al-Qura) vs Bangladesh (one day later).
+   Switching shifts the calendar's Hijri dates AND every event's Gregorian date. */
+var adjBtns=document.querySelectorAll('[data-adj]');
+for(var ai=0;ai<adjBtns.length;ai++){
+  adjBtns[ai].addEventListener('click',function(){
+    HIJRI_ADJ=+this.getAttribute('data-adj');
+    for(var k=0;k<adjBtns.length;k++) adjBtns[k].setAttribute('aria-pressed', adjBtns[k]===this?'true':'false');
+    buildEvMap();
+    setTodayFromData(); renderCalendar(); renderEvents();
+    renderMonth();
+    updateRamadanMeta();
+  });
+}
+/* manual light/dark toggle (follows system until toggled) */
+var themeBtn=document.getElementById('themeBtn');
+function themeLabel(){
+  var t=document.documentElement.getAttribute('data-theme');
+  var dark = t ? (t==='dark') : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  themeBtn.textContent = dark ? '☀️ লাইট মোড' : '🌙 ডার্ক মোড';
+}
+themeBtn.addEventListener('click',function(){
+  var t=document.documentElement.getAttribute('data-theme');
+  var dark = t ? (t==='dark') : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+  themeLabel();
+});
+themeLabel();
+/* notification opt-in */
+var notifyBtn=document.getElementById('notifyBtn');
+notifyBtn.addEventListener('click',function(){
+  if(NOTIFY_ON){ NOTIFY_ON=false; notifyBtn.setAttribute('aria-pressed','false'); notifyBtn.textContent='🔔 ওয়াক্তের নোটিফিকেশন চালু করুন'; return; }
+  if(!('Notification' in window)){ notifyBtn.textContent='এই ব্রাউজারে নোটিফিকেশন সমর্থিত নয়'; return; }
+  if(Notification.permission==='granted'){ NOTIFY_ON=true; }
+  else if(Notification.permission!=='denied'){
+    Notification.requestPermission().then(function(p){ if(p==='granted'){ NOTIFY_ON=true; notifyBtn.setAttribute('aria-pressed','true'); notifyBtn.textContent='🔔 নোটিফিকেশন চালু আছে (পেজ খোলা থাকলে)'; } });
+    return;
+  }
+  if(NOTIFY_ON){ notifyBtn.setAttribute('aria-pressed','true'); notifyBtn.textContent='🔔 নোটিফিকেশন চালু আছে (পেজ খোলা থাকলে)'; }
+  else { notifyBtn.textContent='নোটিফিকেশনের অনুমতি দেওয়া হয়নি'; }
+});
+
+/* Share buttons: the public link below is hardcoded on purpose — the
+   address the browser shows inside the app shell is an internal gateway
+   address, not the shareable public link, so it is never used here.
+   WhatsApp shares today's timetable text together with this link, Facebook
+   opens its sharer with this link as the u= parameter, and the copy button
+   copies this link itself. */
+var PUBLIC_LINK='https://muse.ai/s/bgudd-aa-naamaajer-smy-suuci-xpxz6dzxezxtxooxr/-fIR67VJ1M5A1bc1B30q_8myhBnb7PEeVDXmZicM_Q8';
+function shareText(){
+  var txt='বগুড়া নামাজের সময়সূচি — পাঁচ ওয়াক্ত, ইসলামি দিবস ও রমাদান ২০২৭ কাউন্টডাউন';
+  if(todayData){
+    txt+='\nআজকের ওয়াক্ত (বগুড়া): ফজর '+fmtTime(todayData.fajr).main+', সূর্যোদয় '+fmtTime(todayData.sun).main+', যোহর '+fmtTime(todayData.dhuhr).main+', আসর '+fmtTime(todayData.asr).main+', মাগরিব '+fmtTime(todayData.mag).main+', এশা '+fmtTime(todayData.isha).main;
+  }
+  txt+='\n'+PUBLIC_LINK;
+  return txt;
+}
+var shareWaBtn=document.getElementById('shareWa');
+if(shareWaBtn) shareWaBtn.addEventListener('click',function(){
+  window.open('https://wa.me/?text='+encodeURIComponent(shareText()),'_blank');
+});
+var shareFbBtn=document.getElementById('shareFb');
+if(shareFbBtn) shareFbBtn.addEventListener('click',function(){
+  var u='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(PUBLIC_LINK)+'&quote='+encodeURIComponent(shareText());
+  window.open(u,'_blank','width=640,height=560');
+});
+function fallbackCopy(text){
+  try{
+    var ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    var ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+    return !!ok;
+  }catch(e){ return false; }
+}
+var copyLinkBtn=document.getElementById('copyLinkBtn');
+if(copyLinkBtn) copyLinkBtn.addEventListener('click',function(){
+  var msg=document.getElementById('shareMsg');
+  var text=PUBLIC_LINK;
+  function done(){ if(msg) msg.textContent='লিংক কপি হয়েছে — এখন যেকোনো চ্যাট বা পোস্টে পেস্ট করে শেয়ার করতে পারবেন।'; }
+  function fail(){ if(msg) msg.textContent='লিংক কপি করা যায়নি — ব্রাউজারের শেয়ার অপশন থেকে লিংকটি পাঠাতে পারেন।'; }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done,function(){ if(fallbackCopy(text)) done(); else fail(); });
+  } else if(fallbackCopy(text)){ done(); } else { fail(); }
+});
+
+/* init */
+(function(){
+  var now=dhakaNow();
+  buildEvMap();
+  selectMonth(now.getFullYear(), now.getMonth());
+  setTodayFromData();
+  renderEvents();
+  renderDua();
+  renderCalendar();
+  updateRamadanMeta();
+  setInterval(tick,1000);
+  tick();
+})();
+</script>
+</body>
+</html>
